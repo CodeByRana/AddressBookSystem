@@ -1,5 +1,7 @@
 package com.bridge.abook;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class AddressBookMain {
 
@@ -13,7 +15,7 @@ public class AddressBookMain {
     String emailId;
 
     //Take Input Value
-    private void getInput() {
+    private void insertData() {
         Scanner sc=new Scanner(System.in);
         System.out.print("Enter the first name : ");
         this.firstName=sc.next();
@@ -32,7 +34,7 @@ public class AddressBookMain {
     }
 
     //Show the Values
-    private void showAddressBook() {
+    private void fetchAddressBook() {
         System.out.println("First Name : "+firstName);
         System.out.println("Last Name : "+lastName);
         System.out.println("Address : "+address);
@@ -45,8 +47,8 @@ public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
         AddressBookMain addBookMain=new AddressBookMain();
-        addBookMain.getInput();
-        addBookMain.showAddressBook();
+        addBookMain.insertData();
+        addBookMain.fetchAddressBook();
     }
 
 }
