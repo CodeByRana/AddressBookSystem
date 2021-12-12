@@ -1,5 +1,7 @@
 package com.bridge.abook;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Map;
 import java.util.Scanner;
 
 public class UpdateContactPerson {
@@ -26,6 +28,9 @@ public class UpdateContactPerson {
             System.out.println("Email id : " + UpdateContactPerson.get(j).emailId);
             System.out.println("------------------------------------------------");
         }
+    }
+
+    public static void updatedata(String name, ArrayList<UpdateContactPerson> record) {
     }
 
     public void updateData(String name, ArrayList<UpdateContactPerson> record) {
@@ -56,7 +61,7 @@ public class UpdateContactPerson {
         System.out.print("Enter the email id : ");
         addressBookMain1.emailId = sc.next();
         UpdateContactPerson addBookMain1 = null;
-        return addBookMain1;
+        return null;
     }
     public static void deleteRecord(String name, ArrayList<UpdateContactPerson> record) {
         if(record.size()>0) {
@@ -71,6 +76,24 @@ public class UpdateContactPerson {
         System.out.println("Record Delete Successfully !");
     }
 
-    public static void updatedata(String name, ArrayList<UpdateContactPerson> record) {
+    public Dictionary<String, UpdateContactPerson> insertData(Dictionary<String, UpdateContactPerson> dictionary) {
+        UpdateContactPerson UpdateContactPerson=new UpdateContactPerson();
+        System.out.println("Enter Name for dictionary");
+        String s=(new Scanner(System.in)).next();
+        dictionary.put(s,UpdateContactPerson.insertData());
+        return dictionary;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateContactPerson{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", phoneNumber=" + phoneNumber +
+                ", emailId='" + emailId + '\'' +
+                '}';
     }
 }
