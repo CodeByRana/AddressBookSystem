@@ -4,66 +4,43 @@ import java.util.Scanner;
 
 
 public class AddressBookMain {
-
-    //Declare Variable
-    String firstName;
-    String lastName;
-    String address;
-    String city;
-    int zip;
-    long phoneNumber;
-    String emailId;
-
-    //Take Input Value
-    private void insertData() {
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter the first name : ");
-        this.firstName=sc.next();
-        System.out.print("Enter the last name : ");
-        this.lastName=sc.next();
-        System.out.print("Enter the address : ");
-        this.address=sc.next();
-        System.out.print("Enter the city name : ");
-        this.city=sc.next();
-        System.out.print("Enter the zip code : ");
-        this.zip=sc.nextInt();
-        System.out.print("Enter the phone number : ");
-        this.phoneNumber=sc.nextLong();
-        System.out.print("Enter the email id : ");
-        this.emailId=sc.next();
-    }
-
-    //Show the Values
-    private void fetchAddressBook() {
-        System.out.println("First Name : "+firstName);
-        System.out.println("Last Name : "+lastName);
-        System.out.println("Address : "+address);
-        System.out.println("City Name : "+city);
-        System.out.println("Zip code : "+zip);
-        System.out.println("Phone Number : "+phoneNumber);
-        System.out.println("Email Id : "+emailId);
-    }
-
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
-        ArrayList<AddressBookMain> record=new ArrayList<>();
-        Scanner sc= new Scanner(System.in);
-        AddressBookMain addBookMain1=new AddressBookMain();
-        int status=1;
-        while(status==1) {
-            addBookMain1.insertData();
-            record.add(addBookMain1);
+        UpdateContactPerson contactPerson = new UpdateContactPerson();
 
-            System.out.print("you want to add more address press 1 or 0 for exit ): ");
+        ArrayList<UpdateContactPerson> record = new ArrayList<>();
+        String name;
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        int status = 1;
+        while (flag) {
+            System.out.print("1 - Add more contact \n2 - Edit Contact \n3 - Delete person Contact \n4 - Show AddressBook "+
+                    "\n0 -  for exit \nEnter your Choice.....");
             status = sc.nextInt();
-            if (status == 0) break;
-        }
-        for(int i=0;i<record.size();i++){
-            showAllRecords(record.get(i));
-        }
-    }
-    private static void showAllRecords(AddressBookMain addressBookMain) {
-        addressBookMain.fetchAddressBook();
-    }
 
+            switch (status) {
+                case 1:
+                    record.add(UpdateContactPerson.insertData());
+                    break;
+                case 2:
+                    System.out.println("Enter first name and if you want to update record");
+                    name = sc.next();
+                    UpdateContactPerson.updatedata(name, record);
+                    break;
+                case 3:
+                    System.out.println("Enter first name and if you want to delete record");
+                    name = sc.next();
+                    UpdateContactPerson.deleteRecord(name,record);
+                    break;
+                case 4:
+                    System.out.println("Side of record : " + record.size());
+                    UpdateContactPerson.addressBook(record);
+                    break;
+                case 0:
+                    flag = false;
+                    break;
+            }
+        }
+
+    }
 }
