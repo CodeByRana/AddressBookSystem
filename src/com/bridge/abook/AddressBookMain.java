@@ -46,9 +46,24 @@ public class AddressBookMain {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
-        AddressBookMain addBookMain=new AddressBookMain();
-        addBookMain.insertData();
-        addBookMain.fetchAddressBook();
+        ArrayList<AddressBookMain> record=new ArrayList<>();
+        Scanner sc= new Scanner(System.in);
+        AddressBookMain addBookMain1=new AddressBookMain();
+        int status=1;
+        while(status==1) {
+            addBookMain1.insertData();
+            record.add(addBookMain1);
+
+            System.out.print("you want to add more address press 1 or 0 for exit ): ");
+            status = sc.nextInt();
+            if (status == 0) break;
+        }
+        for(int i=0;i<record.size();i++){
+            showAllRecords(record.get(i));
+        }
+    }
+    private static void showAllRecords(AddressBookMain addressBookMain) {
+        addressBookMain.fetchAddressBook();
     }
 
 }
